@@ -1,6 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("jvm") version "1.8.10"
+}
+
+repositories {
+    mavenCentral()
 }
 
 android {
@@ -18,6 +23,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        manifestPlaceholders["apiKey"] = project.findProperty("MAPBOX_API") ?: ""
+        buildConfigField("String", "API_KEY", "\"${project.findProperty("MAPBOX_API")}\"")
     }
 
     buildTypes {
@@ -71,6 +79,7 @@ dependencies {
     implementation(libs.mapbox.plugin.scalebar)
     implementation(libs.mapbox.plugin.locationcomponent)
     implementation(libs.dotenv.kotlin)
+//    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

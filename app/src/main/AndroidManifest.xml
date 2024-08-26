@@ -28,7 +28,7 @@
         </activity>
         <meta-data
             android:name="com.mapbox.maps.token"
-            android:value=""/>
+            android:value="${apiKey}"/>
     </application>
 
 </manifest>
