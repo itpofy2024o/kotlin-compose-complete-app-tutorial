@@ -1,12 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    kotlin("jvm") version "1.8.10"
 }
 
-repositories {
-    mavenCentral()
-}
+//repositories {
+//    mavenCentral()
+//    maven {
+//        url = uri("https://api.mapbox.com/downloads/v2/releases/maven")
+//        credentials.username = "mapbox"
+//        // Use the secret token stored in gradle.properties as the password
+//        credentials.password = providers.gradleProperty("MAPBOX_API").get()
+//        authentication.create<BasicAuthentication>("basic")
+//    }
+//}
 
 android {
     namespace = "com.jackassbemybadassapplepie.kotlin_complete_app"
@@ -25,7 +31,14 @@ android {
         }
 
         manifestPlaceholders["apiKey"] = project.findProperty("MAPBOX_API") ?: ""
-        buildConfigField("String", "API_KEY", "\"${project.findProperty("MAPBOX_API")}\"")
+
+//        val mapboxApiKey = project.findProperty("MAPBOX_API") as String? ?: ""
+//
+//        // Inject as BuildConfig field
+//        buildConfigField("String", "MAPBOX_API", "\"$mapboxApiKey\"")
+//
+//        // Optionally inject directly as a resource
+//        resValue("string", "mapbox_api_key", mapboxApiKey)
     }
 
     buildTypes {
@@ -72,14 +85,15 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    implementation(libs.mapbox.android)
-    implementation(libs.mapbox.plugin.gestures)
-    implementation(libs.mapbox.plugin.compass)
-    implementation(libs.mapbox.plugin.logo)
-    implementation(libs.mapbox.plugin.scalebar)
-    implementation(libs.mapbox.plugin.locationcomponent)
+//    implementation(libs.mapbox.android)
+//    implementation(libs.mapbox.plugin.gestures)
+//    implementation(libs.mapbox.plugin.compass)
+//    implementation(libs.mapbox.plugin.logo)
+//    implementation(libs.mapbox.plugin.scalebar)
+//    implementation(libs.mapbox.plugin.locationcomponent)
+
+//    implementation("com.mapbox.maps:android:11.6.0")
     implementation(libs.dotenv.kotlin)
-//    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
